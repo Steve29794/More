@@ -55,9 +55,9 @@ public class More extends PlaceholderExpansion {
                         long time = w.getTime();
                         int hours = (int) (time / 1000) + 6;
                         int minutes = (int) ( (time % 1000) * 60 / 1000 );
-                        if (hours > 24) {
-                            return (hours - 24) + ":" + String.format("%02d", minutes) + " PM";
-                        } else if (hours > 12) {
+                        if (hours >= 24) {
+                            return (hours - 24) + ":" + String.format("%02d", minutes) + " AM";
+                        } else if (hours >= 12) {
                             return (hours - 12) + ":" + String.format("%02d", minutes) + " PM";
                         } else {
                             return hours + ":" + String.format("%02d", minutes) + " AM";
