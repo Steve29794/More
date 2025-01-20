@@ -53,9 +53,11 @@ public class More extends PlaceholderExpansion {
                 switch (args[1].toLowerCase()) {
                     case  "12th" -> {
                         long time = w.getTime();
-                        int hours = (int) (time / 1000);
+                        int hours = (int) (time / 1000) + 6;
                         int minutes = (int) ( (time % 1000) * 60 / 1000 );
-                        if (hours > 12) {
+                        if (hours > 24) {
+                            return (hours - 24) + ":" + minutes + " PM";
+                        } else if (hours > 12) {
                             return (hours - 12) + ":" + minutes + " PM";
                         } else {
                             return hours + ":" + minutes + " AM";
