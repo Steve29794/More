@@ -26,12 +26,12 @@ public class More extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return "${version}";
+        return "1.0.0";
     }
 
     @Override
     public String onRequest(OfflinePlayer player, @NotNull String params) {
-        String[] args = params.split("_");
+        String[] args = params.split("_", 3);
         switch (args[0]) {
             // %more_attribute_<uuid>_<identifier>%
             case "attribute" -> {
@@ -60,14 +60,14 @@ public class More extends PlaceholderExpansion {
                         } else if (hours > 12) {
                             return (hours - 12) + ":" + minutes + " PM";
                         } else {
-                            return hours + ":" + minutes + " AM";
+                            return hours + ":" + String.format("%02d", minutes) + " AM";
                         }
                     }
                     case "24th" -> {
                         long time = w.getTime();
                         int hours = (int) (time / 1000);
                         int minutes = (int) ( (time % 1000) * 60 / 1000 );
-                        return hours + ":" + minutes;
+                        return hours + ":" + String.format("%02d", minutes);
                     }
                     case "half" -> {
                         return w.isDayTime() ? "DAY" : "NIGHT";
